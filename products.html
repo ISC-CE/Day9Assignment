@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Image Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Product Image Management</h2>
+        <p>Upload and manage product images using AWS S3</p>
+    </header>
+
+    <h3>Add Product Image</h3>
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required>
+        <br><br>
+        <label for="productImage">Product Image:</label>
+        <input type="file" id="productImage" required>
+        <br><br>
+        <button type="button" onclick="uploadImage()">Upload</button>
+    </form>
+
+    <h3>Product List</h3>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamically populated rows will appear here -->
+        </tbody>
+    </table>
+
+    <script src="js/product-images.js"></script>
+</body>
+
+</html>
