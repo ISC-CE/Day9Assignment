@@ -1,4 +1,3 @@
-// Function to generate a GUID for product ID
 // Configure the AWS SDK with your credentials (Not recommended for security)
 AWS.config.update({
     accessKeyId: 'YOUR_KEY',
@@ -6,6 +5,7 @@ AWS.config.update({
     region: 'us-east-1'
 });
 
+// Function to generate a GUID for product ID
 function generateGUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         let r = Math.random() * 16 | 0,
