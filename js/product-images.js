@@ -1,7 +1,14 @@
 // Function to generate a GUID for product ID
+// Configure the AWS SDK with your credentials (Not recommended for security)
+AWS.config.update({
+    accessKeyId: 'AKIARMWRCEUYVQZWBC5D',
+    secretAccessKey: 'EVJdzEpLJpJG/IvKMotRbZ0rwHeHLszwsBbfGQgV',
+    region: 'us-east-1'
+});
+
 function generateGUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0,
+        let r = Math.random() * 16 | 0,
             v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
@@ -30,34 +37,24 @@ function handleFormSubmit(event) {
     });
 }
 
-// Function to upload an image to S3
 function uploadImageToS3(productId, imageFile, callback) {
-    const AWS = require('aws-sdk'); // Import the AWS SDK
-    // Configure the AWS SDK with your credentials
-    AWS.config.update({
-        accessKeyId: 'YOUR_ACCESS_KEY_ID',
-        secretAccessKey: 'YOUR_SECRET_ACCESS_KEY',
-        region: 'YOUR_REGION' // e.g., 'us-west-1'
-    });
-
-    // Create an S3 instance
-    const s3 = new AWS.S3();
+    const s3 = new AWS.S3(); // Initialize S3 without the require statement
 
     const params = {
-        Bucket: 'YOUR_S3_BUCKET_NAME',
+        Bucket: 'fikayo.day9.storage.products',
         Key: `${productId}/${imageFile.name}`,
         Body: imageFile,
         ACL: 'public-read' // Make the image publicly accessible
     };
+
 
     s3.putObject(params, function(err, data) {
         if (err) {
             callback(err);
             return;
         }
-
         // Return the public URL of the uploaded image
-        const imageUrl = `https://${params.Bucket}.s3.amazonaws.com/${params.Key}`;
+        const imageUrl = `https://s3.amazonaws.com/${params.Bucket}/${params.Key}`;
         callback(null, imageUrl);
     });
 }
@@ -77,6 +74,7 @@ function addProductToTable(productId, productName, imageUrl) {
     imageElement.width = 100; // Set a fixed width for the image
     imageCell.appendChild(imageElement);
 }
+
 
 // Attach the form submit handler after the document is loaded
 document.addEventListener('DOMContentLoaded', function() {

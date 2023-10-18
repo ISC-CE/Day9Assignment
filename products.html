@@ -39,6 +39,7 @@
     <header>
         <h2>Product Image Management</h2>
         <p>Upload and manage product images using AWS S3</p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1167.0/aws-sdk.min.js"></script>
     </header>
 
     <h3>Add Product Image</h3>
@@ -49,11 +50,11 @@
         <label for="productImage">Product Image:</label>
         <input type="file" id="productImage" required>
         <br><br>
-        <button type="button" onclick="uploadImage()">Upload</button>
+        <button type="submit" onclick="handleFormSubmit(event)">Submit</button>
     </form>
 
     <h3>Product List</h3>
-    <table id="productTable">
+    <table id="productsTable">
         <thead>
             <tr>
                 <th>Product ID</th>
