@@ -1,8 +1,8 @@
 // Function to generate a GUID for product ID
 // Configure the AWS SDK with your credentials (Not recommended for security)
 AWS.config.update({
-    accessKeyId: 'AKIARMWRCEUYVQZWBC5D',
-    secretAccessKey: 'EVJdzEpLJpJG/IvKMotRbZ0rwHeHLszwsBbfGQgV',
+    accessKeyId: 'YOUR_KEY',
+    secretAccessKey: 'YOUR_SECRET',
     region: 'us-east-1'
 });
 
@@ -41,7 +41,7 @@ function uploadImageToS3(productId, imageFile, callback) {
     const s3 = new AWS.S3(); // Initialize S3 without the require statement
 
     const params = {
-        Bucket: 'fikayo.day9.storage.products',
+        Bucket: 'YOUR_BUCKET',
         Key: `${productId}/${imageFile.name}`,
         Body: imageFile,
         ACL: 'public-read' // Make the image publicly accessible
